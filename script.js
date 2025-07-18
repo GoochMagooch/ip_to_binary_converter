@@ -1,3 +1,4 @@
-let userInput = document.getElementById("input");
-let conversion = document.getElementById("output");
+let input = document.getElementById("input");
+let output = document.getElementById("output");
+let convert = document.getElementById("btn");
 
