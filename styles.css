@@ -22,3 +22,7 @@ p {
 input {
     margin-left: 10px;
 }
+
+#output {
+    color: white;
+}
