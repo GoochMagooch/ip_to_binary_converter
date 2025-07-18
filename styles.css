@@ -14,3 +14,11 @@ section {
     background-color: black;
 }
 
+p {
+    color: white;
+    margin-left: 10px;
+}
+
+input {
+    margin-left: 10px;
+}
