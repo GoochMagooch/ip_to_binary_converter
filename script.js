@@ -17,6 +17,9 @@ convert.addEventListener("click", function(){
                     if (octets[i] > 255 || octets[i] < 0) {
                         validOctet = false;
                         break;
+                    } else if (octets[i].length == 0) {
+                        validOctet = false;
+                        break;
                     }
                 }
                 // output depending on valid/invalid octets
