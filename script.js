@@ -1,6 +1,6 @@
 let input = document.getElementById("input");
 let output = document.getElementById("output");
-let convert = document.getElementById("btn"); 
+let convert = document.getElementById("btn");
 
 convert.addEventListener("click", function(){
 
@@ -23,7 +23,48 @@ convert.addEventListener("click", function(){
                 if (validOctet == false) {
                     output.textContent = "Invalid octet"
                 } else {
-                    output.textContent = "Valid IP address"
+                    // converts IP address to binary
+                    let bits = [128, 64, 32, 16, 8, 4, 2, 1];
+
+                    let finalAdd = "";
+
+                    for (let i = 0; i < octets.length; i++) {
+                        let binary = "0";
+                        let addCounter = octets[i];
+                        for (let j = 0; j < bits.length; j++) {
+                            if (j == 0) {
+                                if (addCounter == 0) {
+                                    continue
+                                } else if (addCounter - bits[j] < 0) {
+                                    continue
+                                } else if (addCounter - bits[j] == 0) {
+                                    binary = "1";
+                                    addCounter = addCounter - bits[j];
+                                } else if (addCounter - bits[j] > 0) {
+                                    binary = "1";
+                                    addCounter = addCounter - bits[j]
+                                }
+                            } else {
+                                if (addCounter == 0) {
+                                    binary += "0";
+                                } else if (addCounter - bits[j] < 0) {
+                                    binary += "0";
+                                } else if (addCounter - bits[j] == 0) {
+                                    binary += "1";
+                                    addCounter = addCounter - bits[j];
+                                } else if (addCounter - bits[j] > 0) {
+                                    binary += "1";
+                                    addCounter = addCounter - bits[j]
+                                }
+                            }
+                        }
+                        if (i == 3) {
+                            finalAdd += binary;
+                        } else {
+                            finalAdd += binary + ".";
+                        }
+                    }
+                    output.textContent = finalAdd;
                 }
             } else {
                 output.textContent = "Not a valid IP address!"
@@ -31,7 +72,7 @@ convert.addEventListener("click", function(){
             }
         } else {
             output.textContent = "Not a valid IP address!"
-            input.value == ""
+            input.value = ""
         }
     } else {
         output.textContent = "Error: No input detected!"
